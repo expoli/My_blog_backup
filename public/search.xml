@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[My first post]]></title>
+    <url>%2F2018%2F10%2F12%2FMy-first-post%2F</url>
+    <content type="text"><![CDATA[大家好欢迎来到糖醋鱼的博客这是我博客的第一篇文章文笔还需磨炼 语法还欠打磨 排版还需实践欢迎大家给小鱼提出您宝贵的建议第一次发博客，一些考虑不周到的，大家可以提出建议和批评轻拍砖 最近在考虑将我的糖醋鱼这个名字改成小鲤鱼自我感觉良好 O(∩_∩)O哈哈哈~ &raquo;最后非常感谢法海小朋友他的极力支持如果没有他的支持估计你们就看不到这篇文章了 不知道我能坚持写多久 尽力吧！]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[使用 ADB 进行文件的传输操作]]></title>
+    <url>%2F2018%2F10%2F12%2F18-10-12-adb%E4%BC%A0%E8%BE%93%E6%96%87%E4%BB%B6%E7%9A%84%E6%93%8D%E4%BD%9C%2F</url>
+    <content type="text"><![CDATA[使用 ADB 进行文件的传输操作ADB 的安装 ADB 官网下载链接SDK Platform Tools release notes | Android Developers Windows 平台下载 ANDROID SDK PLATFORM-TOOLS FOR WINDOWS 安装步骤 下载 ADB 解压 把系统 C:\Windows\System32 目录里的 cmd.exe 程序复制出来，与adb工具放在同一目录，要用adb工具时直接双击cmd.exe就可以了 输入 adb version，查看adb版本，验证adb是否可用 使用 将手机使用usb连接到电脑 打开手机的开发者模式 打开开发者模式中的 USB调试 在cmd里面输入 adb devices 如果出现手机未识别的提示，则在手机上同意 USB调试的权限授权 再次输入 adb devices offline —— 表示设备未连接成功或无响应。device —— 设备已连接。no device —— 没有设备/模拟器连接。 使用无线将手机连接电脑 adb tcpip 5555 adb connect ipAddress 使用adb devices查看设备是否连接上 断开无线 adb disconnect ipAddress 启动/停止 adb server adb start-server/adb kill-server 使用 ADB 传输文件 从手机向电脑传输文件： 输入:adb pull 手机存储路径 电脑路径adb pull /sdcard/xxx /Users/xxxx/xxx 从电脑向手机传输文件： 输入：adb push 电脑路径 手机存储路径adb push /Users/xxxx/xxx /sdcard/xxx MacOS 平台 手动安装 下载 ANDROID SDK PLATFORM-TOOLS FOR MAC 如果你以前安装过、请删除老文件 rm -rf ~/.android-sdk-macosx/ 将下载的文件解压到 ~/.android-sdk-macosx 运行 SDK Manager sh ~/.android-sdk-macosx/tools/android 根据你的需要选择，（我只需要Android SDK Platform-tools）［可选步骤］ 选好后 Install 环境变量设置 echo &#39;export PATH=$PATH:~/.android-sdk-macosx/platform-tools/&#39; &gt;&gt; ~/.bash_profile 更新配置文件 source ~/.bash_profile 测试是否正常安装 adb devices 通过 Homebrew 安装 brew cask install android-platform-tools 测试 adb devices Linux 平台 手动安装 下载 ANDROID SDK PLATFORM-TOOLS FOR LINUX 命令操作 debine系列的系统可以使用 sudo apt-get install android-tools-adb 如果发现源中没有这个程序： 123sudo add-apt-repository ppa:nilarimogard/webupd8sudo apt-get updatesudo apt-get install android-tools-adb]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>ADB</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Centos 7 的登陆文件的轮替设置 （logrotate）]]></title>
+    <url>%2F2018%2F07%2F17%2F18-07-18-Centos_7%E7%9A%84%E7%99%BB%E9%99%86%E6%96%87%E4%BB%B6%E7%9A%84%E8%BD%AE%E6%9B%BF%E8%AE%BE%E7%BD%AE_logrotate%2F</url>
+    <content type="text"><![CDATA[背景介绍 随着自己慢慢得深入了解Linux，越来越发现Linux的登陆文件的重要性，毕竟系统的很多重要信息都在他的记录范围，包括登陆者的部分信息。 如果幻想你是一个很厉害的骇客，想利用别人的计算机干坏事，然后又不想留下自己的痕迹，那么最重要的就是走的时候把自己的 屁股擦干净 ，首当其冲的就是我们系统的登录文件了，如果登录文件不见了，那么机主就没办法知道自己到底是被谁攻击了。 针对这个问题，我们可以考虑使用文件的 隐藏属性，如果一个文件以 chattr 设置i这个属性的时候，那么这个文件 连root都不能删除 ！而且也不能新增数据！ ，嗯。。。但是，似乎有点安全过头了。。。 相对于i这个属性，a 这个属性比较适合我们的使用环境，如果你的登录文件如果设置了这个属性那么这个文件 只能被增加，而不能够被删除！我们要的就是这个属性。 logrotate 主要针对登录文件来进行轮替的工作，当我们将 /var/log/messages 加上a的属性后，那么logrotate 也没办法按计划更改登录文件了，这不是我们所要的，所以需要设置一下 指令操作1234567891011121314151617# vim /etc/logrotate.d/syslog/var/log/cron/var/log/maillog/var/log/messages/var/log/secure/var/log/spooler&#123; sharedscripts # 把无法修改的属性去掉 prerotate /usr/bin/chattr -a /var/log/messages endscript missingok sharedscripts postrotate /bin/kill -HUP `cat /var/run/syslogd.pid 2&gt; /dev/null` 2&gt; /dev/null || true /usr/bin/chattr +a /var/log/messages # 加上保护属性 endscript 强制进行一次 logrotate 的动作1# logrotate -vf /etc/logrotate.conf 检验自己的设置是否生效1$ ll /var/log/messages*; lsattr /var/log/messages]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>Centos7</tag>
+        <tag>登陆文件</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Centos 7桌面版取消自动休眠]]></title>
+    <url>%2F2018%2F07%2F15%2F18-07-15-Centos7%E6%A1%8C%E9%9D%A2%E7%89%88%E5%8F%96%E6%B6%88%E8%87%AA%E5%8A%A8%E4%BC%91%E7%9C%A0%2F</url>
+    <content type="text"><![CDATA[作为一个刚接触Linux的新手，用实验室闲置的服务安装的Centos 7 来提供内网的文件服务。然后在寝室美滋滋的用SSH进行远程操作. 理想很美好但是现实很残酷，最近发现服务器有时候会莫名其妙的 无响应 等到了实验室才猛然发现原来系统是自动休眠了，经过一番搜索找到了解决方案 在这里分享一下 1234567891011121314vim /etc/X11/xorg.conf # 这个文件原来是没有的，这算是新建了一个文件# 添加以下内容Section "ServerFlags" Option "BlankTime" "0" Option "StandbyTime" "0" Option "SuspendTime" "0" Option "OffTime" "0"EndSectionSection "Monitor" Option "DPMS" "false"EndSection 然后重启服务器，不太这些配置的意思，但至少没再发生原来的情况了，以后是肯定要学习一下 xorg.conf 的详细配置。这个文件好像不能出什么错误，否则系统可能会起不来，所以配置的时候要 格外小心！。]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>Centos7</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[新建大文件以制作loop设备文件来克服分区不良]]></title>
+    <url>%2F2018%2F07%2F14%2F18-07-15-%E6%96%B0%E5%BB%BA%E5%A4%A7%E6%96%87%E4%BB%B6%E4%BB%A5%E5%88%B6%E4%BD%9Cloop%E8%AE%BE%E5%A4%87%E6%96%87%E4%BB%B6%E6%9D%A5%E5%85%8B%E6%9C%8D%E5%88%86%E5%8C%BA%E4%B8%8D%E8%89%AF%2F</url>
+    <content type="text"><![CDATA[分区 服务器的合理分区，有很多的时候都是个很头疼的问题，我们一开始进行的分割是一开始的需求，但是随着使用时间的增加很多时候我们会发现我们一开始的分区方案无法满足我们现在的需求，这个时候，如果我们制作一个 大文件，然后将这个文件 格式化 挂载 ，这个有趣的操作能够帮助我们解决很多系统分区不良的情况。 举例来说，如果你在分区的时候只分出了一个根分区，假设你已经没有多余的空间进行额外的分区，而你的根分区又很大这个时候，制作一个大文件然后挂载上去，这样你就多了一个分区，用途很广泛！ 仔细一想，简直是 神器 ！ 操作命令12345678910# 首先创建大文件# dd if=/dev/zero of=/home/loopdev bs=1M count=512 # 向文件中写入512MB的0# 格式化# mkfs -t ext4 /home/loopdev # 这里会提示你这不是正常的设备选 是# 挂载# mount -o loop /home/loopdev /www/data# df -H # 具体查看一下 成果]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>Centos7</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[U盘文件被病毒隐藏无法查看，但是占用相应空间的恢复办法]]></title>
+    <url>%2F2018%2F05%2F18%2F18-05-18-U%E7%9B%98%E6%96%87%E4%BB%B6%E8%A2%AB%E7%97%85%E6%AF%92%E9%9A%90%E8%97%8F%E6%97%A0%E6%B3%95%E6%9F%A5%E7%9C%8B%EF%BC%8C%E4%BD%86%E6%98%AF%E5%8D%A0%E7%94%A8%E7%9B%B8%E5%BA%94%E7%A9%BA%E9%97%B4%E7%9A%84%E6%81%A2%E5%A4%8D%E5%8A%9E%E6%B3%95%2F</url>
+    <content type="text"><![CDATA[问题背景今天有朋友说她 U盘的文件突然全没了，但是实际还占用着空间，让我帮她看看。（美女嘛，当然要看看咯哈^_^）应该不会太难的吧。。。 摸索历程刚开始我以为只是单纯的被更改了文件的隐藏属性，但是拿到我自己电脑上后发现还是老样子，看着空间还在占用着，于是就试着能不能在Linux上捉到文件，果不其然在Linux上捉到了U盘里面的资料，打开文件夹发现U盘里面生成了和文件夹同名的exe 文件，为了以防万一先把资料备份了一下，然后试着把exe文件删除了，然后拿到win下发现还不行，在询问了一些有经验的大神后，发现是文件被病毒将文件属性设置成了 win 认为的不安全的文件。哎~ 吃了没文化的亏。。。。 解决办法要想看到文件，就需要把 文件夹属性 里面的 隐藏受保护文件那个选项去掉，然后就能看到相应的文件了，这时候就可以将那些exe文件删除 （最好先备份下）。万一出现什么意外那就得不偿失了 最后cmd 运行 1attrib -s -h 盘符:\* /s /d //自己修改成自己U盘相应的盘符 然后问题就解决了~ ^_^最后说一句 数据无价大家要注意保护好自己的数据哈。]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>Windows</tag>
+        <tag>中病毒</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[nginx 设置反向代理]]></title>
+    <url>%2F2018%2F05%2F02%2Fnginx-set-reverse-proxy%2F</url>
+    <content type="text"><![CDATA[反向代理今天给大家介绍一下 如何 使用nginx 内置的 反向代理 功能 想使用反向代理功能 只需要在nginx 的 http 模块 加入类似于下面的代码就行 123456server &#123; listen port; #你想要监听的端口 location / &#123; proxy_pass http://1.1.1.1:80; #你想用这个端口代理的网址 &#125; &#125;]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>nginx</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[解决Windows与Linux双系统时间同步问题]]></title>
+    <url>%2F2018%2F05%2F01%2Fslove-the-matter-of-time%2F</url>
+    <content type="text"><![CDATA[问题发现本子上装的是Window 10和 manjaro 的双系统, 一直以来都发现双系统切换后系统的时间显示有问题 每次都发现进入ubuntu系统的时间显示不正确, 只有再重新使用网络对时之后系统的时间才正常 但是问题不仅于此, 切环回window之后, 会发现系统的时间也不正常了, window一直是网络自动对时的啊, 然后无语, 只能再次打开联网强制同步网络时间. 如此以来好几个星期了老是没顾得上解决, 今天难得想起来, 就花时间整了整. 问题原因Linux和Windows默认的时间管理方式不同，所以双系统发生时间错乱是正常的 Linux默认时间是把BIOS时间当成GMT+0时间，也就是世界标准时，而我国在东八区（GMT+8），所以如果你的Linux位置是中国的话你系统显示的时间就是BIOS时间+8小时, 假如现在是早上8点，那么你Linux会显示8点 而当你切换到Windows系统时就会发生时间错乱，因为Windows会认为BIOS时间就是你的本地时间，结果就是Windows显示时间为0点……而假如你在Windows下同步时间，恢复显示为8点，这时BIOS时间也会被Windows改写成8点，再次进入Linux时显示时间又变成了8+8=16点。 WINDOWS的时间和时区Windows操作系统直接把CMOS时间认定为当前显示时间，不根据时区转换。这样每调整一次系统时区，系统会根据调整的时区来计算当前时间，确定后，也就同时修改了CMOS内的时间（即每调整一次时区，设置保存后，CMOS时间也将被操作系统改变一次，注意不同操作系统调整时间后，也会同时改变CMOS时间，这一点是共通的）。 LINUX的时间和时区Linux和苹果操作系统以当前主板CMOS内时间做为格林威治标准时间，再根据系统设置的时区来最终确定当前系统时间（如时区设置为GMT+08:00北京时间时以及当前CMOS时间为03:00，那么系统会将两个时间相加得出显示在桌面的当前系统时间为11:00） 问题解决在Windows使用Ubuntu的时间管理方式，就是启用UTC（世界协调时） 在Windows下启用UTC打开运行窗口（快捷键Win+R），然后输入 regedit 启动注册表编辑器，并找到一下目录位置：1HKEY_LOCAL_MACHINE/SYSTEM/CurrentControlSet/Control/TimeZoneInformation/ 添加一项类型为REG_DWORD的键值，命名为RealTimeIsUniversal，值为1然后重启后时间即回复正常]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>Windows</tag>
+        <tag>Linux</tag>
+        <tag>时间同步</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[让hexo一直在后台运行]]></title>
+    <url>%2F2018%2F05%2F01%2Fhexo-run-all-time%2F</url>
+    <content type="text"><![CDATA[背景估计有好多朋友 和我一样，在最初部署成功hexo这个开源博客的时候，很高兴的用$ hexo server在服务上跑了起来。 都遇到了 h的exo 进程无法一直常驻后台 ssh 一关，博客进程就死掉了。这可就扎心了，因为我们不可能一直本地开着ssh吧。 于是经过一番大肆搜索，官方说用$ hexo s &amp; 但是我在用的时候还是进程莫名奇妙的死掉了 今天给大家介绍一个方法 那就是 用pm2 来接管hexo的进程 开始操作安装pm2 1$ npm install -g pm2 写一个执行脚本在博客根目录下面创建一个 hexo_run.js 12345678910//runconst &#123; exec &#125; = require('child_process')exec('hexo server',(error, stdout, stderr) =&gt; &#123; if(error)&#123; console.log('exec error: $&#123;error&#125;') return &#125; console.log('stdout: $&#123;stdout&#125;'); console.log('stderr: $&#123;stderr&#125;');&#125;) 运行脚本在根目录下1pm2 start hexo_run.js ok! 大功告成！ 尽情的写你的博客吧！]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[manjaro pacman 命令介绍]]></title>
+    <url>%2F2018%2F04%2F30%2Fmanjaro-common-commands%2F</url>
+    <content type="text"><![CDATA[manjaro 这款发行版所使用的包管理器Arch linux 的 pacman软件包管理器 pacman软件包管理器是 Arch Linux 的一大亮点。它将一个简单的二进制包格式和易用的构建系统结合了起来(参见makepkg和ABS)。不管软件包是来自官方的 Arch 库还是用户自己创建，pacman 都能方便地管理。 pacman 用 C 语言编写，使用tar打包格式。提示： pacman 软件包还提供了其它有用工具，例如 makepkg、pactree、vercomp、 checkupdates等。可以通过 pacman -Ql pacman | grep bin 获取工具列表。 pacman 命令有很多在这里我列出来 几条常用的命令 升级软件包1# pacman -Syu 安装指定的包安装或者升级单个软件包，或者一列软件包（包含依赖包），使用如下命令：1# pacman -S package_name1 package_name2 ... 安装包组一些包属于一个可以同时安装的软件包组。例如，运行下面的命令1# pacman -S gnome 会提醒用户选择 gnome 内需要安装的包。 有的包组包含大量的软件包，有时用户只需其中几个。除了逐一键入序号外，pacman 还支持选择或排除某个区间内的的软件包： 1Enter a selection (default=all): 1-10 15 这将选中序号 1 至 10 和 15 的软件包。而 1Enter a selection (default=all): ^5-8 ^2 将会选中除了序号 5 至 8 和 2 之外的所有软件包。 想要查看哪些包属于 gnome 组，运行： 1# pacman -Sg gnome 也可以访问 https://www.archlinux.org/groups/ 查看可用的包组。 删除软件包删除单个软件包，保留其全部已经安装的依赖关系1# pacman -R package_name 删除指定软件包，及其所有没有被其他已安装软件包使用的依赖关系：1# pacman -Rs package_name 要删除软件包和所有依赖这个软件包的程序:警告: 此操作是递归的，请小心检查，可能会一次删除大量的软件包。1# pacman -Rsc package_name 要删除软件包，但是不删除依赖这个软件包的其他程序：1# pacman -Rdd package_name pacman 删除某些程序时会备份重要配置文件，在其后面加上*.pacsave扩展名。-n 选项可以避免备份这些文件：1pacman -Rn package_name 注意: pacman 不会删除软件自己创建的文件(例如主目录中的 .dot 文件不会被删除。 清理软件包缓存pacman 将下载的软件包保存在 /var/cache/pacman/pkg/ 并且不会自动移除旧的和未安装版本的软件包，因此需要手动清理，以免该文件夹过于庞大。 使用内建选项即可清除未安装软件包的缓存：1# pacman -Sc 警告:仅在确定当前安装的软件包足够稳定且不需要降级时才执行清理。pacman -Sc仅会保留软件包的当前有效版本，旧版本的软件包被清理后，只能从其他地方如 Arch Linux Archive (简体中文)中获取了。pacman -Scc 可以清理所有缓存，但这样 pacman 在重装软件包时就只能重新下载了。除非空间不足，否则不应这么做。]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>manjaro</tag>
+        <tag>pacman</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[安装manjaro 出现GRUB 恢复模式的解读办法]]></title>
+    <url>%2F2018%2F04%2F28%2Ffix-manjaro-GRUB-prroblem%2F</url>
+    <content type="text"><![CDATA[今天看到manjaro 更新了新版 而且大佬们都乐于推荐manjaro 于是就 想着 尝试一下！殊不知 这次在我那破本子上的一次尝试 让我看到了我本子装Linux的希望 让我有了准备折腾一番 大干一场的 冲动！！！！ 在这我总结一下我这次折腾 所遇到的坑 ❂首先是 BIOS设置BIOS UEFI启动 并且把 安全启动关闭！！！ ❂然后是 制作安装镜像启动盘也许你会问 这有什么难得。 对当时我也是这样想的 但是在和 平时进行相同操作时 却四处碰壁。 进入了所谓的 GRUB 恢复模式！ 没错 你猜对了 我当时一脸蒙蔽！ 在经过一番google 后，找到了元凶！那就是 镜像写入方式有问题！！！ 需要以DD模式写入！ 这里推荐一款 开源 ！！ 好用！！ 强大！！ 并且能够在WIN下实现DD模式写入ISO 镜像的软件 他就是 RUFUS！ 体积非常小 ！ 在以DD模式写入过后 终于能顺利的进行安装了！ （我还以为是我安装的时候 出现了问题 重装了 5，6 次！！！ 鱼儿 哭死在厕所里！） 希望 这个能对你有所帮助！]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>manjaro</tag>
+        <tag>GRUB</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[给本子安装manjaro 出现无法关机的解决办法]]></title>
+    <url>%2F2018%2F04%2F28%2Ffix-manjaro-can-t-shoutdown-problem%2F</url>
+    <content type="text"><![CDATA[manjaro-kde-17.1.8-stable 和 win10 双系统 总是发现在关机或者重启的时候，无法关掉电源，只能按电脑的电源按钮才可以强行关掉， 最后通过以下办法才解决。 方案一 首先编辑/etc/default/grub文件，再该文件下查找GRUB_CMDLINE_LINUX=””一行，修改为： 1GRUB_CMDLINE_LINUX="reboot=efi" 然后执行如下命令： 1$ sudo update-grub 更新/boot/grub/grub.cfg文件。 注：更新完了之后，默认grub菜单的选择时间为10秒，可以按照自己的需求修改。 注：如果上边修改的/etc/default/grub文件，没有作用，可以继续尝试替换为下边的几种内容。 12345GRUB_CMDLINE_LINUX="reboot=bios"GRUB_CMDLINE_LINUX="reboot=acpi"GRUB_CMDLINE_LINUX="reboot=pci" 方案二在终端用打开编辑 /boot/grub/grub.cfg 文件： 1#sudo vi /boot/grub/grub.cfg 找到下面内容（在第140行附近）： 123456789101112131415161718192021inux --class gnu --class os &#123; recordfail gfxmode $linux_gfx_mode insmod gzio insmod part_msdos insmod ext2 set root='(hd0,msdos11)' search --no-floppy --fs-uuid --set=root ed532c1f-b89a-470c-ad6f-539a3f04b993 linux /boot/vmlinuz-3.2.0-24-generic-pae root=UUID=ed532c1f-b89a-470c-ad6f-539a3f04b993 ro quiet splash $vt_handoff **acpi=force** initrd /boot/initrd.img-3.2.0-24-generic-pae&#125; 如上面 acpi=force 标记，在此处加上acpi=force 保存退出。 方案三有可能是显卡驱动的问题可尝试 屏蔽开源驱动nouveau 1$ sudo vim /etc/modprobe.d/blacklist.conf 然后添加如下内容：123456789blacklist vga16fbblacklist nouveaublacklist rivafbblacklist nvidiafbblacklist rivatv 重启测试 方案四123456781.安装 watchdogsudo apt install watchdog2.开启 watchdog 服务sudo systemctl enable watchdog.service3.马上启用 watchdog 服务sudo systemctl start watchdog.service 我 Asus FX50V 主板 采用的是 方案一 的ACPI 和 方案 二 进行解决的 希望能够帮到你!]]></content>
+      <categories>
+        <category>踩坑与脱坑</category>
+      </categories>
+      <tags>
+        <tag>manjaro</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Arch 优秀衍生版 manjaro 设置国内源]]></title>
+    <url>%2F2018%2F04%2F28%2FChange-the-manjaro-s-source%2F</url>
+    <content type="text"><![CDATA[设置官方镜像源（包括 core， extra， community， multilib ）1$ sudo pacman-mirrors -i -c China -m rank //更新镜像排名 然后勾选你需要的镜像源，确认即可。 1$ sudo pacman -Syy //更新数据源 OK! 完成！ 真的很方便！ manjaro 真是一个优秀的发行版，但是为什么国内用的人这么少呢？ 不太理解，毕竟中文支持也很棒，用户体验也一流。推荐试用哈！]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>manjaro</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Arch 安装中文输入法]]></title>
+    <url>%2F2018%2F04%2F28%2FArch-install-pinyin%2F</url>
+    <content type="text"><![CDATA[推荐安装小狼毫输入法安装操作从官方仓库安装ibus软件包： 1# pacman -S ibus 此外，为了启动ibus的Qt应用程序支持, 安装ibus-qt软件库： 1# pacman -S ibus-qt 安装输入法引擎你至少需要一个支持你所想用的语言的输入法。可用的输入法包括： 12345678910ibus-anthy: 一个日文输入法引擎，基于anthy。ibus-pinyin: 一个智能中文语音输入法引擎，支持汉语拼音与注音符号。设计者为Ibus的主要作者，而且有许多的高级功能（如英文拼错修改）。 该软件暂时没有维护，而且最新的 ibus 引擎上部分功能不能使用。作为替代，请使用ibus-libpinyin。ibus-rime:一个强大的智能中文输入法,支持拼音、注音或者没有音调的拼音、双拼、粤拼、中州韵、仓颉和五笔86。ibus-chewing:一个智能中文语音输入法引擎，支持注音符号，基于libchewing。ibus-hangul: 一个韩文输入法，基于libhangul。ibus-unikey: 支持越南文字的输入法引擎。ibus-table: 一个支持查表型输入法的输入法引擎。ibus-m17n: 一个m17n输入法引擎，可以用m17n-db数据库中的输入法来输入许多语言。ibus-mozc - 个日文输入法引擎, 基于 Mozc. 包含在 mozcAUR 包中。ibus-keymagic:一个复合型智能输入法，它被设计成可以工作于所有语言，但需要和kms脚本生成的km2键盘布局共同使用。 查看所有可用的输入法：1$ pacman -Ss ^ibus-* 安装小狼毫输入法1$ pacman -S ibus-rime 初始安装现在运行ibus-setup的初始程序(需要用Ibus的用户):1$ ibus-setup 它会启动后台程序，并给你这条信息： 12345IBus has been started! If you cannot use IBus, please add below lines in $HOME/.bashrc, and relogin your desktop.（译：IBus已启动！如果您还不能用Ibus,请您先将以下的三行代码加到$HOME/.bashrc，再重新登录。)export GTK_IM_MODULE=ibusexport XMODIFIERS=@im=ibusexport QT_IM_MODULE=ibus 注意: 虽然Ibus使用一个后台程序，但是它不是被systemd管理的那种后台程序：普通用户也可以运行，当你登录时，它会启动。 注意: 但是，如果ibus尚未启动，先将那些”export”的代码复制到$HOME/.xprofile(这个文件里)，并将这行代码加到该文件后面：ibus-daemon -x -d,再重新登录。 之后，你会看到一张设置屏幕。Ibus运行时，可以随时访问该屏幕，在系统托盘中的Ibus图符点击右键，选择”Preferences”（选项）即可. 如果Ibus在Qt、KDE应用程序中不工作，保证ibus-qt软件库已安装，并在Qt设置编辑器中将Ibus制定为默认输入法引擎： 1$ qtconfig-qt4 在 “Interface” -&gt; “Default Input Method” （译：“界面”-&gt;“默认输入法引擎”） 中,选择“ibus”,而不是”xim”。 GNOMEGNOME现在已经默认集成了IBus， 所以你只需要安装的输入法引擎并在Region &amp; Language 添加输入源。默认切换输入法的快捷键是 Super+space; 你可以在终端输入 1$ ibus-setup 进入设置页面来修改。]]></content>
+      <categories>
+        <category>小狼毫</category>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>Arch</tag>
+        <tag>小狼毫</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Arch 安装Nginx]]></title>
+    <url>%2F2018%2F04%2F28%2FArch-install-Nginx%2F</url>
+    <content type="text"><![CDATA[Nginx介绍Nginx (读作”engine X”) 由Igor Sysoev(俄罗斯)于2005年编写，是一个免费、开源、高性能的HTTP服务器和反向代理，也可以作为一个IMAP/POP3代理服务器。根据 Netcraft 的 April 2015 Web Server Survey, 现在全世界14.48%的网站使用Nginx，而Apache占38.39%。Nginx因为稳定，丰富的功能集，配置简单，资源占用低而闻名世界。 安装位于官方仓库的nginx 软件包。1# 安装位于官方仓库的nginx 软件包。 启动服务要启动Nginx服务,运行以下命令:1# systemctl start nginx 要Nginx服务开机时启动,运行以下命令:1# systemctl enable nginx http://127.0.0.1 的默认页面是:1/usr/share/nginx/html/index.html 配置你可以修改在 /etc/nginx/ 目录中的文件来更改配置 ./etc/nginx/nginx.conf 是主配置文件 [参考文献］(“https://wiki.archlinux.org/index.php/Nginx_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)&quot;)]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>Arch</tag>
+        <tag>nginx</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Arch美化——配置oh-my-zsh]]></title>
+    <url>%2F2018%2F04%2F28%2FArch-oh-my-zsh%2F</url>
+    <content type="text"><![CDATA[ZSH 安装1$ sudo pacman -S zsh 配置默认shell：1$ sudo vim /etc/passwd 将要修改的用户的shell路径改为 /usr/bin/zsh 即可，也就是将 bash 改为 zsh on-my-zsh 安装保证安装了git ，curl (或 wget ) 1$ sudo pacman -S git wget curl #curl 一般都有了，装 git wget 即可 1$ wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh 1$ chmod +x install.sh &amp;&amp; ./install.sh 修改主题1$ sudo vim ~/.zshrc 找到 ZSH_THEME=”robbyrussell” 修改为 ZSH_THEME=”random” 为随机主题，要换其他主题，修改此处即可 修改完后打开终端即为 on-my-zsh(有的可能要注销一下) &rarr;[所有主题(https://github.com/robbyrussell/oh-my-zsh/wiki/themes)]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>Arch</tag>
+        <tag>zsh</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Archlinux开启ssh服务以使用终端登录]]></title>
+    <url>%2F2018%2F04%2F28%2FArchlinux-restart-ssh%2F</url>
+    <content type="text"><![CDATA[Archlinux开启ssh服务命令12345# systemctl enable sshd.service 开机启动# systemctl start sshd.service 立即启动# systemctl restart sshd.service 立即重启 之后你就可以远程操控你心爱的 linux 了 是不是很激动啊！]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>Arch</tag>
+        <tag>ssh</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Linux 分区方案介绍]]></title>
+    <url>%2F2018%2F04%2F26%2FLinux-partition%2F</url>
+    <content type="text"><![CDATA[介绍Linux 是个很神奇的系统，他那神秘的命令行界面总是让我沉迷于其中无法自拔，经过一段时间的Linux折腾，我发现要想用好Linux最重要的就是在一开始安装Linux的时候就把分区选好，这样不仅能够让我们的学习Linux的过程更加的顺畅，还能增加我们对Linux的兴趣！ 设想：谁会想自己的系统天天那么的不稳定老出问题？毕竟我们不是专门安装Linux的不可能把自己的时间都浪费到安装Linux系统上面。而合理的分区是系统稳定的一个很重要的基础。所以学会给Linux分区还是很重要的！ 建议不要使用linux里面的自动分区 因为你不知道 他是根据什么依据来给你进行分区的 建议使用手动分区&rarr; 建议刚接触Linux的新手将自己给Linux预留的空间分别挂载到EFI系统分区 (如果你的主板支持UEFI启动的话，建议你选择这个启动模式）交换分区 / 和/home上. 其中 EFI分区 尽量大于200MB 交换分区的空间大约是物理内存的1-2倍 剩下的 空间可以 给/ 1/3 的空间 剩下的2/3 都留给/home &rarr; 如果你对linux 系统有一定的了解 那么你应该知道你的linux 系统的主要用途是什么，因为linux分区是很灵活的 没有什么固定的 格式，你应该做的就是根据自己的需要来定制自己的linux 例如：如果你是用来做资源储存服务器的 那么你的 /home 就应该相应的空间大些 如果你是用来做邮件服务，proxy 服务那么你的/var分区就应该相应的大些 /home 和 /usr 通常是最大的，因为所安装的数据都是在 /usr下 而用户数据是放在 /home 下的，因此大家一般分区都是 把剩下的磁盘容量平分 给这两个目录。 不过也不一定啦，看你自己的需求啦，你完全可以定制属于你的Linux分区方案！ 例如：你平时储存资料比较多 但是安装软件 比较少 那么你就可以相应的 调整一下 分区之间的分配。 无论如何，每部主机所出的环境与功能用途不同，那么自然相应的磁盘分区方案 也就不同啦！根据自己的需要灵活定制自己的分区方案]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>分区</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Ubuntu修改ssh端口]]></title>
+    <url>%2F2018%2F04%2F26%2Fchange-ssh-port%2F</url>
+    <content type="text"><![CDATA[首先安装openssh-server 1$ sudo apt-get install openssh-server 修改1/etc/ssh/sshd_config 在Port 22下添加你的端口1$ sudo vim /etc/ssh/sshd_config 修改1/etc/ssh/ssh_config 1$ sudo vim /etc/ssh/ssh_config 把 # port 22前面的 # 去掉，并在下一行添加 你想要使用的端口 eg: Port ** 修改保存后 重启服务1$ /etc/init.d/ssh restart or1$ service ssh restart 然后在防火墙开启相应端口，进行测试 （注意现在ssh同时工作在22和你设定的端口下，测试完毕后你可以选择把22端口注释掉。 OK！ 大功告成！]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>ssh</tag>
+        <tag>Ubuntu</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[怎样更改Linux的文件权限]]></title>
+    <url>%2F2018%2F04%2F26%2Fhow-to-change-file-permissions%2F</url>
+    <content type="text"><![CDATA[介绍好了,当我们已经知道档案权限对于一个系统的安全重要性,也知道档案的权限对于使用者与群组的相关性后, 好了,那么如何修改一个档案的权限呢?又有多少档案的权限我们可以修改呢? 其实一个档案的权限很多嘛!大致上我们先介绍几个简单的,例如:群组、拥有者、各种身份的权限等等。 • chgrp :改变档案所属群组 • chown :改变档案所属人 • chmod :改变档案的属性、 SUID 、等等的特性 改变所属群组, chgrp改变一个档案的群组真是很简 单的,直接以 chgrp 来改变即可,咦!这个指令就是 change group 的缩写嘛!对啦!这样就很好记了吧! ^_^。不过,请记得, 要改变成为的群组名称必须要在 /etc/group 里面存在的名称才行,否则就会显示错误！ 改变档案拥有者, chown好了,那么如何改变一个档案的 拥有者呢?很简单呀!既然改变群组是 change group ,那么改变拥有者就是 change owner 啰!BINGO,对啦!那就是 chown 这个指令的用途,要注意的是,使用者必须是已经存在系统中的,也就是在 /etc/passwd 这个档案中有纪录的使用者名称才行改变。 改变九个属性, chmod档案属性的改变使用的是 ch mod 这个指令,但是,属性的设定方法有两种, 分别可以使用数字或者是符号来进行属性的变更。 •数字类型改变档案权限Linux 档案的基本属性就有九 个,分别是 owner/group/others 组别的 read/write/excute 属性。 1-rwxrwxrwx 这九个属性是三个三个一组的!其中,我们可以使用数字来代表各个属性,各属性的对照表如下 123r:4w:2x:1 同一组 (owner/group/others) 的三个属性 (r/w/x) 是需要累加的,例如当属性为 [-rwxrwx—] 则是: 123owner = rwx = 4+2+1 = 7group = rwx = 4+2+1 = 7others= --- = 0+0+0 = 0 chmod 使用方法：1234 u +(加入) rchmod g -(除去) w 档案或目录 o =(设定) x a 来 实作一下吧!]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>文件权限</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Linux LS 指令介绍]]></title>
+    <url>%2F2018%2F04%2F26%2Fthe-linux-bash-ls%2F</url>
+    <content type="text"><![CDATA[介绍为了更好的了解 Linux 的档案属性,那么有个重要的也是常用的指令我们必须要会用哦!啥？你问哪一个?! 别急嘛，学习需要慢慢得脚踏实地慢慢来！这个指令就是『 ls 』这一个 list 档案的指令啰! 在你登入 Linux 之后,下达『ls -al 』看看. ls 是『list』的意思,与在早期的 DOS 年代的指令 dir 类似功能。 而参数『-al』则表示列出所有的档案 ( 包含隐藏档,就是档名前面第一个字符为 . 的那种档案 ) 。 示例：1234567891011drwx------ 16 root root 4096 Apr 27 08:34 .drwxr-xr-x 23 root root 4096 Apr 10 05:08 ..-rw------- 1 root root 18758 Apr 24 22:55 .bash_history-rw-r--r-- 1 root root 3106 Oct 22 2015 .bashrcdrwxr-xr-x 3 root root 4096 Apr 3 23:20 .bundledrwx------ 2 root root 4096 Apr 3 10:04 .cachedrwx------ 3 root root 4096 Apr 4 08:27 .configdrwxr-xr-x 4 root root 4096 Apr 4 23:13 .foreverdrwxrwxr-x 3 root root 4096 Apr 3 23:19 .gem-rw-r--r-- 1 root root 43 Apr 3 11:09 .gitconfigdrwx------ 2 root root 4096 Apr 3 23:00 .gnupg ##＃ 参数含义：.bashrc_history &rarr; １.第一栏代表这个档案的属性: 这个地方最需要注意了!仔细看的话,你应该可以发现这一栏其实共有十个属性: 第一个属性代表这个档案是『目录、档案或连结文件等等』:  当为[ d ]则是目录,例如上表的第 11 行;  当为[ - ]则是档案,例如上表的第 5 行;  若是[ l ]则表示为连结档(link file);  若是[ b ]则表示为装置文件里面的可供储存的接口设备;  若是[ c ]则表示为装置文件里面的串行端口设备,例如键盘、鼠标。 接下来的属性中,三个为一组,且均为『rwx』 的三个参数的组合。其中,[ r ]代表可读(read)、[ w ]代表可写(write)、[ x ]代表可执行(excute): 第一组为『拥有人的权限』,以第 5 行为例,该档案的拥有人可以读写,但不可执行;  第二组为『同群组的权限』;  第三组为『其它非本群组的权限』。 范例:若有一个档案的属性为『-rwxr-xr–』,简单的可由下面说明之:[-][rwx][r-x][r–]1 234 567 890 &rarr;1 为:代表这个文件名为目录或档案(上面为档案) &rarr;234 为:拥有人的权限(上面为可读、可写、可执行) &rarr;567 为:同群组使用者权限(上面为可读可执行) &rarr;890 为:其它使用者权限(上面为仅可读) 上面的属性情况代表一个档案、这个档案的拥有人可读可写可执行、但同群组的人仅可读与执行,非同群组的使用者仅可读的意思! 除此之外,需要特别留意的是 x 这个标号! 若文件名为一个目录的时候,例如这 .ssh 这个目录:1drwx------ 3 root root 4096 Apr 3 23:19 .ssh 可以看到这是一个目录,而且只有 root 可以读写与执行。但是若为底下的样式时,请问非 root的 其它人是否可以进入该目录呢?1drwxr--r-- 3 root root 4096 Apr 3 23:19 .ssh 咦!似乎好像是可以喔!因为有可读[ r ]存在嘛!『错!』答案是非 root 这个账号的其它使用者 均不可进入 .ssh 这个目录,为什么呢? 因为 x 与 目录 的关系相当的重要, 如果您在该目录底下不能执行任何指令的话,那么自然也就无法进入了,因此, 请特别留意的是,如果您想要开放某个目录让一些人进来的话, 请记得将该目录的 x 属性给开放呦!至于目录的权限相关说明, 我们会在底下继续介绍的。 另外,你也必须要更加的小心的是, 在 Windows 底下一个档案是否具有执行的能力是藉由『 附檔名 』来判断的, 例如:.exe, .bat, .com 等等,但是在 Linux 底下, 我们的档案是否能执行,则是藉由是否具有 x 这个属性来决定的!所以,跟档名是没有绝对的关系的! 这点还请特别留意呢! &rarr;2.第二栏表示为连结占用的节点 (i-node): 这个跟连结档 (link file) 比较有关系,我们在未来的章节会再加以介绍的。 如果是目录的话,那么就与该目录下还有多少目录有关。 &rarr;3. 第三栏表示这个档案(或目录)的『拥有人』。 &rarr;4. 第四栏表示拥有人的群组。这里再次解释一下,在 Linux 中,你的 ID ( 如 root 或 test 等账号均是所谓的 ID ) 即是你的身份,而且你还可以附属在一 个或多个群组之下,例如刚刚我们上面提到的,你有一个团体 ( 即群组 ) 代号为 testgroup ,且这个群体里有三个人,其代号分别是 test1, test2, test3,则这三个人为同一群组即 testgroup!那么如果以上图的的档案属性(-rwxrwx—) 来看,如果该档案属于 test1 所有,那么 test2, test3 亦有读、写、执行的权力,因为他们都属于同一个group 呀!而如果您不是属于 test1, test2, test3 的任何一个人,也不属于 testgroup 这个群组时,那么您将不具备读、写、执行这个档案的权限了! &rarr;5. 第五栏为这个档案的容量大小。 &rarr;6. 第六栏为这个档案的建档日期或者 是最近的修改日期, 分别为月份、日期及时间。请特别留意,如果您是以繁体中文来进行安装您的 Linux 时,那么预设的语系可能会被改为中文。而 由于中文无法显示在文字型态的终端机上面, 所以这一栏会成为怪怪的乱码,这个时候,请修改一下/etc/sysconfig/i18n 这个档案,里面的『 LC_TIME 』修改为:『 LC_TIME=en 』再储存离开,再登入一次,就可以得到英文字形显示的日期了! 那么如何修改该档案呢?呵呵!以 root 身份用 vi 修改。 另外,也可以使用『 LANG=en ls -al 』之类的语法来显示。 &rarr;7.第七栏为这个档案的档名, 如果档名之前多一个『 . 』,则代表这个档案为『 隐藏档』, 例如上表第 6 行的『.bundle』档名即是隐藏档,由于我们有下一个参数为 ls -al,所以连隐藏档都列出来,如果你只输入 ls 则档名有加『 . 』的档案就不会被显示出来!这七个字段的意义是很重要的! 务必清楚的知道各个字段代表的意义呢! 尤其是第一个字段的十个权限, 那是整个 Linux 档案权限的重点之一]]></content>
+      <categories>
+        <category>介绍</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>指令</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Linux 关机的正确姿势]]></title>
+    <url>%2F2018%2F04%2F26%2Fthe-correct-way-to-reboot-linux%2F</url>
+    <content type="text"><![CDATA[Linux命令sync强制将内存中的文件缓冲内容写到磁盘sync用于强制将内存中的文件缓冲内容写到磁盘。linux系统为了提高读写磁盘的效率（buffer：为了解决写磁盘的效率。cache：为了解决读磁盘的效率），会先将数据放在一块buffer中。在写磁盘时并不是立即将数据写到磁盘中，而是先写入这块buffer中了。 在系统关机或者重启时，会自动把缓冲区的内容自动同步到磁盘中，但是如果系统异常关机，会有缓存文件丢失的情况。因此，我们也可以手工去执行sync命令，强制将内存中的文件缓冲内容写到磁盘。 命令分类：磁盘目录管理语法格式1$ sync [选项] 参数12--help：显示此帮助信息并退出--version：显示版本信息并退出 示例将缓存内容写入到磁盘中 并且 重启 1# sync;sync;sync; reboot 在这里为了让缓存都写入到磁盘中用了 3 次指令 以防万一 !!]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>关机</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Ubuntu 安装小狼豪输入法]]></title>
+    <url>%2F2018%2F04%2F24%2Finstall-RimeWithIBus%2F</url>
+    <content type="text"><![CDATA[今天给大家推荐一款广受好评的一款 Linux 中文输入法 小狼豪输入法。 小狼豪输入法 开源 可以自己 添加功能，开发词库 等等。。 下面介绍一下 安装方法 Ubuntu 12.04 and higher12345678910# this repo provides libkyotocabinet, libgoogle-glog for Ubuntu 12.04;# these packages are officially supported since Ubuntu 12.10. sudo add-apt-repository ppa:fcitx-team/nightly # providing libyaml-cpp0.5, librime, rime-data, ibus-rime sudo add-apt-repository ppa:lotem/rimesudo apt-get updatesudo apt-get install ibus-rime 安裝更多輸入方案：（推薦使用 /plum/ 安裝最新版本）12345678910111213141516171819202122# 朙月拼音（預裝） sudo apt-get install librime-data-luna-pinyin # 雙拼 sudo apt-get install librime-data-double-pinyin # 宮保拼音 sudo apt-get install librime-data-combo-pinyin # 注音、地球拼音 sudo apt-get install librime-data-terra-pinyin librime-data-bopomofo # 倉頡五代（預裝） sudo apt-get install librime-data-cangjie5 # 速成五代 sudo apt-get install librime-data-quick5 # 五筆86、袖珍簡化字拼音、五筆畫 sudo apt-get install librime-data-wubi librime-data-pinyin-simp librime-data-stroke-simp # IPA (X-SAMPA) sudo apt-get install librime-data-ipa-xsampa # 上海吳語 sudo apt-get install librime-data-wugniu # 粵拼 sudo apt-get install librime-data-jyutping # 中古漢語拼音 sudo apt-get install librime-data-zyenpheng 官方安装手记]]></content>
+      <categories>
+        <category>笔记</category>
+        <category>工具推荐</category>
+      </categories>
+      <tags>
+        <tag>小狼毫</tag>
+        <tag>Ubuntu</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[讲一下在给服务器装系统时遇到的坑]]></title>
+    <url>%2F2018%2F04%2F19%2Finstall-system-to-server%2F</url>
+    <content type="text"><![CDATA[因为第一次接触服务器，所以不太清楚服务器的机器的特性，看到机器预装的是win server 2008又看到机器说明书上所说支持CentOS 于是，就准备给机子换个“身体”，给他装上Linux。。。。 于是经过一番漫长的下载，写入，，等待，，，，终于！！！ 进入了安装界面！！ 激动人心的时刻到来了。 神圣的按下确定 突然！！！ WTF error？？？？（¥×`===¢「=√¢^¥^¢√）你能想像我此时的心情吗？ 经过一番排查，最终发现是分区表问题 原来的分区表格式是MBR 格式 现在需要的是 GPT 格式。OK 更改分区表，一路安装，经过漫长的等待。。。安装成功！！然后 我，很憋屈的发现，，我TM不会用。。。。而且重启之后网络会自动关闭。。。而且ssh 也不能用？？？？什么鬼。果断放弃！ 再见，CentOS 你与我无缘. OK 换系统。还是用Ubuntu 吧，然后在安装的过程中我发现了一个有趣的现象，Ubuntu那所谓的高级分区工具，居然没法把CentOS的分区给删除！！！什么情况？？？ 这是逼我拿出大杀器啊，祭出大杀器！PE上场！删区合并一同操作猛如虎！ 然后尝试了一下Debian 经过一番长久的等待 安装完成 然后突然发现 出现了 请插入 CD-ROM 的报错！！ ？？？？什么鬼。经过搜索 发现是软件源的问题。把相关信息 注释掉 可以使用了。 但是因为软件源和支持问题 最后又改为了 Ubuntu 。。。。。 这波操作。。。我很服。。。]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>踩坑与脱坑</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Ubuntu简单设置ufw防火墙]]></title>
+    <url>%2F2018%2F04%2F19%2Fset-firewall-ufw%2F</url>
+    <content type="text"><![CDATA[UFW，即简单防火墙 (uncomplicated firewall)，是一个 Arch Linux、Debian 或 Ubuntu 中管理防火墙规则的前端。 UFW 通过命令行使用（尽管它有可用的 GUI），它的目的是使防火墙配置简单（即不复杂 uncomplicated）. 一 更新系统 1$ sudo apt-get update &amp;&amp; sudo apt-get upgrade 二 安装UFW1$ sudo apt-get install ufw 三 开启UFW1$ sudo ufw enable 相应的禁用UFW1$ sudo ufw disable 四 设置规则查看运行状态1$ sudo ufw status 设置规则1$ sudo ufw allow Port 删除规则1$ sudo ufw delete allow Port 启用日志记录1$ sudo ufw logging on 日志位于1/var/logs/ufw 常规日志类似于这样 Sep 16 15:08:14 &lt;hostname&gt; kernel: [UFW BLOCK] IN=eth0 OUT= MAC=00:00:00:00:00:00:00:00:00:00:00:00:00:00 SRC=123.45.67.89 DST=987.65.43.21 LEN=40 TOS=0x00 PREC=0x00 TTL=249 ID=8475 PROTO=TCP SPT=48247 DPT=22 WINDOW=1024 RES=0x00 SYN URGP=0]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>Ubuntu</tag>
+        <tag>ufw</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[更改Ubuntu软件镜像源]]></title>
+    <url>%2F2018%2F04%2F19%2Fchange-the-sources-list%2F</url>
+    <content type="text"><![CDATA[Ubuntu 的软件源配置文件是1/etc/apt/sources.list 将系统自带的该文件做个 备份 将该文件替换为下面内容，即可使用 TUNA （清华大学开源软件镜像站）的软件源镜像。 我的Ubuntu版本是116.04 LTS 对应的配置文件如下1234567891011# 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted universe multiverse# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted universe multiversedeb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-updates main restricted universe multiverse# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-updates main restricted universe multiversedeb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-backports main restricted universe multiversedeb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security main restricted universe multiverse# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security main restricted universe multiverse# 预发布软件源，不建议启用# deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-proposed main restricted universe multiverse# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-proposed main restricted universe multiverse 其它Ubuntu版本]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>Ubuntu</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[nginx 设置目录访问权限]]></title>
+    <url>%2F2018%2F04%2F16%2Fnginx-set-passwd%2F</url>
+    <content type="text"><![CDATA[一、创建htpasswd文件可以使用下面这个python脚本生成认证文件bash https://gist.githubusercontent.com/kelvinblood/efd9d19cc981f71b3f94ee0e04f2ea96/raw/b84137bc2024d30d4ab57a778b5938e9eeef0632/htpasswd.py 二、执行命令 授予执行权限1chmod 777 htpasswd.py ./htpasswd.py -c -b filename username password 其中htpasswd是生成的文件名，username 是用户名，password 是对应的密码 然后把生成的文件复制到你nginx的文件夹里面 eg:/etc/nginx/修改nginx的conf 或nginx的虚拟服务器配置文件的server 条目 加上这两句 123# 设置访问权限auth_basic "Restricted";#访问权限类型auth_basic_user_file /etc/nginx/htpasswd;#用户名单 然后重启nginx 1$ sudo nginx -s relaod OK！]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>nginx</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[my nginx config]]></title>
+    <url>%2F2018%2F04%2F16%2Fmy-nginx-config%2F</url>
+    <content type="text"><![CDATA[最近一段时间折腾了一下Nginx 在这里分享一下自己的配置文件 有需要的朋友可以看下Nginx服务配置文件：Nginx.conf1$ sudo vim /etc/nginx/nginx.conf 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889user www-data;pid /var/run/nginx.pid;worker_processes 4;worker_rlimit_nofile 100000;events &#123; worker_connections 2048; multi_accept on; use epoll;&#125;http &#123; server_tokens off; sendfile on; tcp_nopush on; tcp_nodelay on; access_log off; error_log /var/log/nginx/error.log crit; keepalive_timeout 10; client_header_timeout 10; client_body_timeout 10; reset_timedout_connection on; send_timeout 10; limit_conn_zone $binary_remote_addr zone=addr:5m; limit_conn addr 100; include /etc/nginx/mime.types; default_type text/html; autoindex on; #列出文件目录 autoindex_exact_size off; #人性化显示文件大小 autoindex_localtime on; # autoindex_ignore “header.html” “footer.html”; #屏蔽美化的html显示 charset utf-8,gbk; #避免中文乱码# 对页面进行美化# fancyindex on;# fancyindex_ignore “header.html” “footer.html”; #屏蔽美化的html显示# fancyindex_exact_size off;# fancyindex_header "header.html";# fancyindex_footer "footer.html"; gzip on; gzip_disable "msie6"; gzip_proxied any; gzip_min_length 1000; gzip_comp_level 6; gzip_types text/plain text/css application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript; open_file_cache max=100000 inactive=20s; open_file_cache_valid 30s; open_file_cache_min_uses 2; open_file_cache_errors on; include /etc/nginx/conf.d/*.conf; include /etc/nginx/sites-enabled/*;&#125;#mail &#123;# # See sample authentication script at:# # http://wiki.nginx.org/ImapAuthenticateWithApachePhpScript# # # auth_http localhost/auth.php;# # pop3_capabilities "TOP" "USER";# # imap_capabilities "IMAP4rev1" "UIDPLUS";# # server &#123;# listen localhost:110;# protocol pop3;# proxy on;# &#125;# # server &#123;# listen localhost:143;# protocol imap;# proxy on;# &#125;#&#125; 虚拟主机配置文件1$ sudo vim /etc/nginx/conf.d/file_server.conf 12345678910111213141516171819202122server &#123; listen ****; #端口监听 server_name ********; # 自己PC的ip或者服务器的域名 charset utf-8,gbk; # 避免中文乱码 location / &#123; root /home/****/****; # 存放文件的目录 charset utf-8,gbk; # 避免中文乱码 autoindex on; # 索引 autoindex_exact_size off; # 显示文件大小 autoindex_localtime on; # 显示文件时间# 页面美化 fancyindex on; fancyindex_ignore “header.html” “footer.html”; #屏蔽美化的html显示 fancyindex_exact_size off; fancyindex_header "header.html"; fancyindex_footer "footer.html";# 设置访问权限 auth_basic "Restricted";#访问权限类型 auth_basic_user_file /etc/nginx/htpasswd;#用户名单 &#125;&#125;]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>nginx</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Ubuntu install nginx]]></title>
+    <url>%2F2018%2F04%2F16%2FUbuntu-install-nginx%2F</url>
+    <content type="text"><![CDATA[命令操作1$ sudo apt-get install nginx ###嗯！就是这么简单粗暴！哈哈哈]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>nginx</tag>
+        <tag>Ubuntu</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Linux多线程下载工具Axel]]></title>
+    <url>%2F2018%2F04%2F16%2FAxel%2F</url>
+    <content type="text"><![CDATA[背景介绍在 Linux 下我尝试了很多的下载工具，例如wget，you-get，wget不支持多线程和断点续传，you-get功能很强大可下载众多视频，但是有的链接是不能够下载的（例如百度云直链） 今天在这里给大家介绍的 Axel，是 Linux 下一款不错的 HTTP 或 FTP 高速下载工具。 支持多线程下载、断点续传，且可以从多个地址或者从一个地址的多个连接来下载同一个文件，适合网速不给力时多线程下载以提高下载速度。 需要注意的是，该软件只有命令行界面。 安装 AxelCentOS 安装 Axel 方法：因默认 repo 里没有 Axel，因此需要手动下载安装。1$ http://pkgs.repoforge.org/axel/ 下载 rpm 包安装即可。 CentOS 6.x 32 位下安装1$ wget -c http://pkgs.repoforge.org/axel/axel-2.4-1.el6.rf.i686.rpmrpm -ivh axel-2.4-1.el6.rf.i686.rpm CentOS 6.x 64 位下安装1$ wget -c http://pkgs.repoforge.org/axel/axel-2.4-1.el6.rf.x86_64.rpmrpm -ivh axel-2.4-1.el6.rf.x86_64.rpm Debian/Ubuntu 安装 Axel 方法：1$ apt-get install -y axel 使用 Axel1234567891011axel [OPTIONS] url1 [url2] [url…]-n x -n x指定线程数（x 必须为大于 0 的数字）-o x 指定另存为目录（x 必须为本地目录）-s x 指定下载速度（x 必须为大于 0 的数字，单位是 bytes/s）-q 静默模式，无任何输出信息-V 软件版本 Axel 在下载过程中如果遇到中断的话，在原来的目录再次执行相同的下载命令即可恢复下载进度。 原文参考]]></content>
+      <categories>
+        <category>笔记</category>
+        <category>工具推荐</category>
+      </categories>
+      <tags>
+        <tag>Axel</tag>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[关于Ubuntu没有声音的解决方法]]></title>
+    <url>%2F2018%2F04%2F06%2FUbuntu-sound-problem%2F</url>
+    <content type="text"><![CDATA[关于Ubuntu没有声音的解决方法最近发现网易云客户端的Linux版本于是满心欢喜的下载安装试了试 但是 突然发现系统没有声音了！！！！ 小鱼那个心里苦啊～～～～ ╮(╯▽╰)╭ 没办法自己造的罪还需自己去解决！ 不能轻言放弃！ 经过一番搜索 找到了一个不错的解决方案 命令1$ aplay -l 检查输出1$ alsamixer 将所有选项调高（warning：不要调到最大，可能会被Surprise）1$ sudo killall pulseaudio 然后注销一下 问题解决！希望这个操作会对你有用]]></content>
+      <categories>
+        <category>踩坑与脱坑</category>
+      </categories>
+      <tags>
+        <tag>Ubuntu</tag>
+      </tags>
+  </entry>
+</search>
