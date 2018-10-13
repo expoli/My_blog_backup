@@ -1,15 +1,18 @@
 ---
+layout: post
 title: 怎样更改Linux的文件权限
 date: 2018-04-27 09:13:41
-cover: https://s1.ax1x.com/2018/10/12/iNk7FO.png
+comments: true
 tags:
-- Linux
-- 文件权限
+    - Linux
+    - 文件权限
 categories:
-- 笔记
+    - 笔记
 ---
 
-## 介绍
+![Lunux file attributes](https://s1.ax1x.com/2018/10/12/iNk7FO.png)
+
+### 介绍
 好了,当我们已经知道档案权限对于一个系统的安全重要性,也知道档案的权限对于使用者与群组的相关性后, 好了,那么如何修改一个档案的权限呢?又有多少档案的权限我们可以修改呢? 其实一个档案
 的权限很多嘛!大致上我们先介绍几个简单的,例如:群组、拥有者、各种身份的权限等等。
 

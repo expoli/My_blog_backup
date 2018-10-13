@@ -1,13 +1,16 @@
 ---
+layout: post
 title: manjaro pacman 命令介绍
 date: 2018-05-01 09:24:03
-cover: https://s1.ax1x.com/2018/10/12/iNkjOI.png
+comments: true
 tags:
-- manjaro
-- pacman
+    - Manjaro
+    - pacman
 categories:
-- 笔记
+    - 笔记
 ---
+
+![Pacman](https://s1.ax1x.com/2018/10/12/iNkjOI.png)
 
 manjaro 这款发行版所使用的包管理器Arch linux  的 **pacman软件包管理器** 
 

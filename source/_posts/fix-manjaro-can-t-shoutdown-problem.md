@@ -1,16 +1,20 @@
 ---
+layout: post
 title: 给本子安装manjaro 出现无法关机的解决办法
 date: 2018-04-29 09:59:04
-cover: https://s1.ax1x.com/2018/10/12/iNkAZ6.png
+comments: true
 tags:
-- manjaro
+    - Manjaro
+    - 坑
 categories:
-- 踩坑与脱坑
+    - 笔记
 ---
+
+![Manjaro shut down](https://s1.ax1x.com/2018/10/12/iNkAZ6.png)
 
 **manjaro-kde-17.1.8-stable** 和** win10** 双系统 总是发现在关机或者重启的时候，无法关掉电源，只能按电脑的电源按钮才可以强行关掉， 最后通过以下办法才解决。
 
-## 方案一
+### 方案一
 
 * 首先编辑**/etc/default/grub**文件，再该文件下查找**GRUB_CMDLINE_LINUX=""**一行，修改为：
 ```bash
@@ -35,7 +39,7 @@ GRUB_CMDLINE_LINUX="reboot=acpi"
 GRUB_CMDLINE_LINUX="reboot=pci"
 ```
 
-## 方案二
+### 方案二
 在终端用打开编辑 **/boot/grub/grub.cfg** 文件：
 
 ```bash
@@ -70,7 +74,7 @@ inux --class gnu --class os {
 
 如上面 **acpi=force** 标记，在此处加上**acpi=force** **保存退出**。
 
-## 方案三 
+### 方案三 
 
 **有可能是显卡驱动的问题**
 可尝试 屏蔽开源驱动**nouveau**

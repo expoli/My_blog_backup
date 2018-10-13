@@ -1,14 +1,18 @@
 ---
+layout: post
 title: 关于Ubuntu没有声音的解决方法
 date: 2018-04-07 05:20:44
-cover: https://s1.ax1x.com/2018/10/12/iNElUf.png
+comments: true
 tags:
-- Ubuntu
+    - Ubuntu
+    - 坑
 categories:
-- 踩坑与脱坑
+    - 笔记
 ---
 
-## 关于Ubuntu没有声音的解决方法
+![sound](https://s1.ax1x.com/2018/10/12/iNElUf.png)
+
+### 关于Ubuntu没有声音的解决方法
 
 <center>最近发现网易云客户端的Linux版本于是满心欢喜的下载安装试了试</center>
 
@@ -22,7 +26,7 @@ categories:
 
 <center>经过一番搜索 找到了一个不错的解决方案</center>
 
-## 命令
+### 命令
 
 ``` bash
 $ aplay -l

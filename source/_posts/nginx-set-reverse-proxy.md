@@ -1,14 +1,17 @@
 ---
+layout: post
 title: nginx 设置反向代理
 date: 2018-05-02 21:40:46
-cover: https://s1.ax1x.com/2018/10/12/iNA09e.png
+comments: true
 tags:
-- nginx
+	- Nginx
 categories:
-- 笔记
+	- 笔记
 ---
 
-## 反向代理
+![Nginx server](https://s1.ax1x.com/2018/10/12/iNA09e.png)
+
+### 反向代理
 今天给大家介绍一下 如何 使用nginx 内置的 **反向代理** 功能
 
 想使用反向代理功能 只需要在nginx 的 **http 模块** 加入类似于下面的代码就行

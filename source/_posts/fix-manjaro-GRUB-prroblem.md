@@ -1,13 +1,16 @@
 ---
+layout: post
 title: 安装manjaro 出现GRUB 恢复模式的解读办法
 date: 2018-04-29 10:20:54
-cover: https://s1.ax1x.com/2018/10/12/iNkhO1.png
+comments: true
 tags:
-- manjaro
-- GRUB
+    - Manjaro
+    - GRUB
 categories:
-- 笔记
+    - 笔记
 ---
+
+![Manjaro grub](https://s1.ax1x.com/2018/10/12/iNkhO1.png)
 
 ### 今天看到manjaro 更新了新版 而且大佬们都乐于推荐manjaro 于是就 想着 尝试一下！
 
@@ -28,3 +31,4 @@ categories:
 （我还以为是我安装的时候 出现了问题 重装了 5，6 次！！！ 鱼儿 哭死在厕所里！）
 
 希望 这个能对你有所帮助！
+

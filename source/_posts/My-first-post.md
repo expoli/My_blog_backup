@@ -1,11 +1,15 @@
 ---
+layout: post
 title: My first post
-cover: https://s1.ax1x.com/2018/10/12/iNAMhF.png
+date: 
+comments: true
 tags:
-- Hexo
+    - Hexo
 categories:
-- 笔记
+    - 笔记
 ---
+
+![four pacman](https://s1.ax1x.com/2018/10/12/iNAMhF.png)
 
 <center><big>大家好欢迎来到糖醋鱼的博客</big></center>
 <!-- more -->

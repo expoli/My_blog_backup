@@ -1,15 +1,18 @@
 ---
+layout: post
 title: Centos 7 的登陆文件的轮替设置 （logrotate）
 date: 2018-07-18 09:26:08
-cover: https://s1.ax1x.com/2018/10/12/iNVDeI.png
+comments: true
 tags:
-- Centos7
-- 登陆文件
+    - Centos7
+    - 登陆文件
 categories:
-- 笔记
+    - 笔记
 ---
 
-## 背景介绍
+![Centsos](https://s1.ax1x.com/2018/10/12/iNVDeI.png)
+
+### 背景介绍
 
 * 随着自己慢慢得深入了解Linux，越来越发现Linux的登陆文件的重要性，毕竟系统的很多重要信息都在他的记录范围，包括登陆者的部分信息。
 
@@ -21,7 +24,7 @@ categories:
 
     * logrotate 主要针对登录文件来进行轮替的工作，当我们将 **/var/log/messages** 加上a的属性后，那么logrotate 也没办法按计划更改登录文件了，这不是我们所要的，所以需要设置一下
 
-## 指令操作
+### 指令操作
 
 ```bash
 # vim /etc/logrotate.d/syslog
@@ -43,12 +46,12 @@ categories:
     endscript
 ```
 
-## 强制进行一次 logrotate 的动作
+### 强制进行一次 logrotate 的动作
 ```bash
 # logrotate -vf /etc/logrotate.conf
 ```
 
-## 检验自己的设置是否生效
+### 检验自己的设置是否生效
 ```bash
 $ ll /var/log/messages*; lsattr /var/log/messages
 ```

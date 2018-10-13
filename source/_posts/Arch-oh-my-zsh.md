@@ -1,13 +1,16 @@
 ---
+layout: post
 title: Arch美化——配置oh-my-zsh
 date: 2018-04-29 09:01:09
-cover: https://s1.ax1x.com/2018/10/12/iNiqAO.png
+comments: true
 tags:
-- Arch
-- zsh
+    - Arch
+    - Oh my zsh
 categories:
-- 笔记
+    - 笔记
 ---
+
+![Arch and oh my zsh](https://s1.ax1x.com/2018/10/12/iNiqAO.png)
 
 ### ZSH 安装
 ```bash

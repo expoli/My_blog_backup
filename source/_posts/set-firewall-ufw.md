@@ -1,13 +1,17 @@
 ---
+layout: post
 title: Ubuntu简单设置ufw防火墙
 date: 2018-04-20 08:05:06
-cover: https://s1.ax1x.com/2018/10/12/iNA43Q.png
+comments: true
 tags:
-- Ubuntu
-- ufw
+    - Ubuntu
+    - UFW
 categories:
-- 笔记
+    - 笔记
 ---
+
+![UFW](https://s1.ax1x.com/2018/10/12/iNA43Q.png)
+
 **UFW**，即**简单防火墙** (**uncomplicated firewall**)，是一个 Arch Linux、Debian 或 Ubuntu 中管理防火墙规则的前端。 
 
 **UFW** 通过命令行使用（尽管它有可用的 GUI），它的目的是使防火墙配置简单（**即不复杂 uncomplicated**）.

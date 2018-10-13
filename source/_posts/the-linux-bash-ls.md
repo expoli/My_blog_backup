@@ -1,15 +1,18 @@
 ---
+layout: post
 title: Linux LS 指令介绍
 date: 2018-04-27 09:01:59
-cover: https://s1.ax1x.com/2018/10/12/iNAHH0.png
+comments: true
 tags:
-- Linux
-- 指令
+    - Linux
+    - 指令
 categories:
-- 介绍
+    - 笔记
 ---
 
-## 介绍
+![Linux](https://s1.ax1x.com/2018/10/12/iNAHH0.png)
+
+### 介绍
 为了更好的了解 Linux 的档案属性,那么有个**重要**的也是**常用**的指令我们必须要会用哦!啥？你问哪一个?!  别急嘛，学习需要慢慢得脚踏实地慢慢来！
 这个指令就是**『 ls 』**这一个 list 档案的指令啰!  在你登入 Linux 之后,下达『ls -al 』看看.
 

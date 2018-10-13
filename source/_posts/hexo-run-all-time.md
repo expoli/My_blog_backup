@@ -1,12 +1,17 @@
 ---
-title: 让hexo一直在后台运行
+layout: post
+title: 让Hexo一直在后台运行
 date: 2018-05-02 06:41:31
-cover: https://s1.ax1x.com/2018/10/12/iNkoTK.png
-tags:
-- hexo
+comments: true
+tags: 
+	- Hexo
+	- 坑
 categories:
-- 笔记
+	- 笔记
 ---
+
+![Hexo github](https://s1.ax1x.com/2018/10/12/iNkoTK.png)
+
 
 ## 背景
 

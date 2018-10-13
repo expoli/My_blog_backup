@@ -1,14 +1,18 @@
 ---
+layout: post
 title: Ubuntu修改ssh端口
 date: 2018-04-27 09:29:59
-cover: https://s1.ax1x.com/2018/10/12/iNFevn.png
+comments: true
 tags:
-- Ubuntu
-- ssh
+    - Ubuntu
+    - ssh
 categories:
-- 笔记
+    - 笔记
 ---
-首先安装**openssh-server**
+
+![SSH](https://s1.ax1x.com/2018/10/12/iNFevn.png)
+
+首先安装 **openssh-server**
 
 ```bash
 $ sudo apt-get install openssh-server

@@ -1,15 +1,18 @@
 ---
+layout: post
 title: Linux 分区方案介绍
 date: 2018-04-27 09:29:59
-cover: https://s1.ax1x.com/2018/10/12/iNkOld.png
+comments: true
 tags: 
-- Linux
-- 分区
+    - Linux
+    - 分区
 categories:
-- 笔记
+    - 笔记
 ---
 
-## 介绍
+![Linux Disk Defragmentation](https://s1.ax1x.com/2018/10/12/iNkOld.png)
+
+### 介绍
 Linux 是个很神奇的系统，他那神秘的命令行界面总是让我沉迷于其中无法自拔，经过一段时间的Linux折腾，我发现要想用好Linux最重要的就是在一开始安装Linux的时候就把分区选好，这样不仅能够让我们的学习Linux的过程更加的顺畅，还能增加我们对Linux的兴趣！
 
 设想：谁会想自己的系统天天那么的不稳定老出问题？毕竟我们不是专门安装Linux的不可能把自己的时间都浪费到安装Linux系统上面。而合理的分区是系统稳定的一个很重要的基础。所以学会给Linux分区还是很重要的！

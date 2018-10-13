@@ -1,16 +1,19 @@
 ---
+layout: post
 title: Arch 安装中文输入法
 date: 2018-04-29 09:26:08
-cover: https://s1.ax1x.com/2018/10/12/iNi2AU.png
+comments: true
 tags:
-- Arch
-- 小狼毫
+    - Arch
+    - 小狼毫
+    - 推荐
 categories:
-- 小狼毫
-- 笔记
+    - 笔记
 ---
 
-## 推荐安装小狼毫输入法
+![RIME](https://s1.ax1x.com/2018/10/12/iNi2AU.png)
+
+### 推荐安装小狼毫输入法
 
 ### 安装操作
 

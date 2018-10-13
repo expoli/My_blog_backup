@@ -1,15 +1,18 @@
 ---
-title: Ubuntu install nginx
+layout: post
+title: Ubuntu 安装 nginx
 date: 2018-04-16 22:21:39
-cover: https://s1.ax1x.com/2018/10/12/iNE8PS.png
+comments: true
 tags:
-- Ubuntu
-- nginx
+    - Ubuntu
+    - Nginx
 categories:
-- 笔记
+    - 笔记
 ---
 
-## 命令操作
+![Ubuntu and nginx](https://s1.ax1x.com/2018/10/12/iNE8PS.png)
+
+### 命令操作
 
 ``` bash
 $ sudo apt-get install nginx

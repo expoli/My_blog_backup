@@ -1,15 +1,18 @@
 ---
+layout: post
 title: Arch 安装Nginx
 date: 2018-04-29 09:13:49
-cover: https://s1.ax1x.com/2018/10/12/iNiHHK.jpg
+comments: true
 tags:
-- Arch
-- nginx
+    - Arch
+    - Nginx
 categories:
-- 笔记
+    - 笔记
 ---
 
-## Nginx介绍
+![Arch and Ningx](https://s1.ax1x.com/2018/10/12/iNiHHK.jpg)
+
+### Nginx介绍
 **Nginx** (读作"engine X") 由Igor Sysoev(俄罗斯)于2005年编写，是一个免费、开源、高性能的HTTP服务器和反向代理，也可以作为一个IMAP/POP3代理服务器。根据 Netcraft 的 April 2015 Web Server Survey, 现在全世界14.48%的网站使用Nginx，而Apache占38.39%。**Nginx因为稳定，丰富的功能集，配置简单，资源占用低而闻名世界。 **
 
 ### 安装位于官方仓库的nginx 软件包。 

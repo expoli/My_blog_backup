@@ -1,12 +1,17 @@
 ---
+layout: post
 title: nginx 设置目录访问权限
 date: 2018-04-16 23:42:46
-cover: https://s1.ax1x.com/2018/10/12/iNAdhD.png
+comments: true
 tags:
-- nginx
+    - Nginx
 categories:
-- 笔记
+    - 笔记
 ---
+
+![Nginx password](https://s1.ax1x.com/2018/10/12/iNAdhD.png)
+
+
 ### 一、创建htpasswd文件
 
 可以使用下面这个python脚本生成认证文件

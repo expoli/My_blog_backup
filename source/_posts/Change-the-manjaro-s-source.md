@@ -1,12 +1,15 @@
 ---
+layout: post
 title: Arch 优秀衍生版 manjaro 设置国内源
 date: 2018-04-29 09:35:34
-cover: https://s1.ax1x.com/2018/10/12/iNi5cR.jpg
+comments: true
 tags:
-- manjaro
+    - Manjaro
 categories:
-- 笔记
+    - 笔记
 ---
+
+![Manjaro](https://s1.ax1x.com/2018/10/12/iNi5cR.jpg)
 
 ### 设置官方镜像源（包括 core， extra， community， multilib ）
 

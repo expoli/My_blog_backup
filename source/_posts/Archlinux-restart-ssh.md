@@ -1,13 +1,16 @@
 ---
+layout: post
 title: Archlinux开启ssh服务以使用终端登录
 date: 2018-04-29 08:40:29
-cover: https://s1.ax1x.com/2018/10/12/iNizjI.png
+comments: true
 tags:
-- Arch
-- ssh
+    - Arch
+    - ssh
 categories:
-- 笔记
+    - 笔记
 ---
+
+![Arch and ssh](https://s1.ax1x.com/2018/10/12/iNizjI.png)
 
 ### Archlinux开启ssh服务命令
 

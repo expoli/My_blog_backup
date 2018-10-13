@@ -1,16 +1,19 @@
 ---
+layout: post
 title: Linux多线程下载工具Axel
 date: 2018-04-16 21:24:11
-cover: https://s1.ax1x.com/2018/10/12/iNFECQ.png
+comments: true
 tags:
-- Axel
-- Linux
+    - Axel
+    - Linux
+    - 推荐
 categories:
-- 笔记
-- 工具推荐
+    - 笔记
 ---
 
-## 背景介绍
+![Axel](https://s1.ax1x.com/2018/10/12/iNFECQ.png)
+
+### 背景介绍
 
 在 Linux 下我尝试了很多的下载工具，例如wget，you-get，wget不支持多线程和断点续传，you-get功能很强大可下载众多视频，但是有的链接是不能够下载的（例如百度云直链）
 

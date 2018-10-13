@@ -1,14 +1,17 @@
 ---
+layout: post
 title: my nginx config
 date: 2018-04-16 22:27:30
-cover: https://s1.ax1x.com/2018/10/12/iNAlp4.png
+comments: true
 tags:
-- nginx
+	- Nginx
 categories:
-- 笔记
+	- 笔记
 ---
 
-## 最近一段时间折腾了一下Nginx 在这里分享一下自己的配置文件 有需要的朋友可以看下
+![Nginx](https://s1.ax1x.com/2018/10/12/iNAlp4.png)
+
+### 最近一段时间折腾了一下Nginx 在这里分享一下自己的配置文件 有需要的朋友可以看下
 
 ### Nginx服务配置文件：Nginx.conf 
 

@@ -1,14 +1,17 @@
 ---
+layout: post
 title: Ubuntu 安装小狼豪输入法
 date: 2018-04-24 20:03:18
-cover: https://s1.ax1x.com/2018/10/12/iNkHYD.png
+comments: true
 tags:
-- Ubuntu
-- 小狼毫
+    - Ubuntu
+    - 小狼毫
+    - 推荐
 categories:
-- 笔记
-- 工具推荐
+    - 笔记
 ---
+
+![Rime](https://s1.ax1x.com/2018/10/12/iNkHYD.png)
 
 今天给大家推荐一款广受好评的一款 Linux 中文输入法  **小狼豪**输入法。
 

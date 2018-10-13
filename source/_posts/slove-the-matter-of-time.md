@@ -1,14 +1,17 @@
 ---
+layout: post
 title: 解决Windows与Linux双系统时间同步问题
 date: 2018-05-02 11:30:29
-cover: https://s1.ax1x.com/2018/10/12/iNATun.png
+comments: true
 tags:
-- Linux
-- Windows
-- 时间同步
+    - Linux
+    - Windows
+    - 时间同步
 categories:
-- 笔记
+    - 笔记
 ---
+
+![time](https://s1.ax1x.com/2018/10/12/iNATun.png)
 
 ### 问题发现
 

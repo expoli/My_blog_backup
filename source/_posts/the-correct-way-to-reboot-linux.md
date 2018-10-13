@@ -1,13 +1,16 @@
 ---
+layout: post
 title: Linux 关机的正确姿势
 date: 2018-04-27 08:24:19
-cover: https://s1.ax1x.com/2018/10/12/iNA7Bq.png
+comments: true
 tags:
-- Linux
-- 关机
+    - Linux
+    - 维护
 categories:
-- 笔记
+    - 笔记
 ---
+
+![Dont shut down my pc](https://s1.ax1x.com/2018/10/12/iNA7Bq.png)
 
 ### Linux命令sync强制将内存中的文件缓冲内容写到磁盘
 
