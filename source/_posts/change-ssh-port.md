@@ -14,6 +14,8 @@ categories:
 
 首先安装 **openssh-server**
 
+<!-- more -->
+
 ```bash
 $ sudo apt-get install openssh-server
 ```

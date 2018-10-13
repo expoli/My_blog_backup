@@ -15,6 +15,8 @@ categories:
 
 ### Nginx服务配置文件：Nginx.conf 
 
+<!-- more -->
+
 ``` bash
 $ sudo vim /etc/nginx/nginx.conf
 ```

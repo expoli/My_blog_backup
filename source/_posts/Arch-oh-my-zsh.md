@@ -17,6 +17,8 @@ categories:
 $ sudo pacman -S zsh
 ```
 
+<!-- more -->
+
 ### 配置默认shell：
 ```bash
 $ sudo vim /etc/passwd

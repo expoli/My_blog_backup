@@ -14,6 +14,8 @@ categories:
 
 **UFW**，即**简单防火墙** (**uncomplicated firewall**)，是一个 Arch Linux、Debian 或 Ubuntu 中管理防火墙规则的前端。 
 
+<!-- more -->
+
 **UFW** 通过命令行使用（尽管它有可用的 GUI），它的目的是使防火墙配置简单（**即不复杂 uncomplicated**）.
 
 **一 更新系统**

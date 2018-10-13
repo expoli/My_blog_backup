@@ -14,6 +14,8 @@ categories:
 
 ### Archlinux开启ssh服务命令
 
+<!-- more -->
+
 ```bash
 # systemctl enable sshd.service     开机启动
 

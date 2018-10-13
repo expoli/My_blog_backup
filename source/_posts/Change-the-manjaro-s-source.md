@@ -13,6 +13,8 @@ categories:
 
 ### 设置官方镜像源（包括 core， extra， community， multilib ）
 
+<!-- more -->
+
 ```bash
 $ sudo pacman-mirrors -i -c China -m rank //更新镜像排名
 ```

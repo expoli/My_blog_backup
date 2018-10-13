@@ -14,6 +14,8 @@ categories:
 
 ### 命令操作
 
+<!-- more -->
+
 ``` bash
 $ sudo apt-get install nginx
 ```

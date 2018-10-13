@@ -14,6 +14,8 @@ categories:
 
 manjaro 这款发行版所使用的包管理器Arch linux  的 **pacman软件包管理器** 
 
+<!-- more -->
+
 pacman软件包管理器是 Arch Linux 的一大亮点。它将一个简单的二进制包格式和易用的构建系统结合了起来(参见makepkg和ABS)。不管软件包是来自官方的 Arch 库还是用户自己创建，pacman 都能方便地管理。 
 
 pacman 用 C 语言编写，使用tar打包格式。

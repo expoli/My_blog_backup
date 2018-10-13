@@ -13,6 +13,8 @@ categories:
 
 Ubuntu 的软件源配置文件是 
 
+<!-- more -->
+
 ```bash
 /etc/apt/sources.list
 ```

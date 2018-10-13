@@ -14,6 +14,8 @@ categories:
 
 ### 关于Ubuntu没有声音的解决方法
 
+<!-- more -->
+
 <center>最近发现网易云客户端的Linux版本于是满心欢喜的下载安装试了试</center>
 
 <center>但是 突然发现系统<big>没有声音了</big>！！！！</center>

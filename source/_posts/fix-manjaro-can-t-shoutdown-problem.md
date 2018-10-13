@@ -14,6 +14,8 @@ categories:
 
 **manjaro-kde-17.1.8-stable** 和** win10** 双系统 总是发现在关机或者重启的时候，无法关掉电源，只能按电脑的电源按钮才可以强行关掉， 最后通过以下办法才解决。
 
+<!-- more -->
+
 ### 方案一
 
 * 首先编辑**/etc/default/grub**文件，再该文件下查找**GRUB_CMDLINE_LINUX=""**一行，修改为：

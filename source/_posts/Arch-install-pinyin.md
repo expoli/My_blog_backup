@@ -17,6 +17,8 @@ categories:
 
 ### 安装操作
 
+<!-- more -->
+
 **从官方仓库安装ibus软件包：**
 
 ```bash
