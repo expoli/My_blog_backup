@@ -1,0 +1,95 @@
+<% include variables.ejs %>
+<%
+var relative = theme.head.favicon.ico.indexOf('http') == -1;
+
+function suka_img_url_for(url) {
+    if (relative === true) {
+        return config.url + url_for(url).replace(config.root, '/');
+    } else {
+        return url;
+    }
+}
+%>
+<% if( (page.current === 1) && (is_home()) ) { %>
+<script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Blog",
+    "author": {
+        "@type": "Person",
+        "name": "<%= config.author %>",
+        "image": {
+            "@type": "ImageObject",
+            "url": "<%= suka_img_url_for(theme.img.avatar) %>"
+        },
+        "description": "<%- theme.slogan %>"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "<%= config.title %>",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "<%= suka_std_icon %>"
+        }
+    },
+    "url": "<%- config.url %>",
+    "image": {
+        "@type": "ImageObject",
+        "url": "<%= suka_std_icon %>"
+    },
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "<%= config.url %>"
+    },
+    "keywords": "<%= suka_tags %>",
+    "description": "<%= suka_descr %>"
+}
+</script>
+<% } %>
+
+<% if( (is_post()) ) { %>
+
+<script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "<%= page.permalink %>"
+    },
+    "headline": "<%= suka_title %>",
+    <% if(page.thumbnail) { %>
+    "image": {
+        "@type": "ImageObject",
+        "url": "<%= suka_img_url_for(page.thumbnail) %>"
+    },
+    <% } else { %>
+    "image": {
+        "@type": "ImageObject",
+        "url": "<%= suka_std_icon %>"
+    },
+    <% } %>
+    "datePublished": "<%= date_xml(page.date) %>",
+    "dateModified": "<%= date_xml(page.updated) %>",
+    "author": {
+        "@type": "Person",
+        "name": "<%= config.author %>",
+        "image": {
+            "@type": "ImageObject",
+            "url": "<%= suka_img_url_for(theme.img.avatar) %>"
+        },
+        "description": "<%- theme.slogan %>"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "<%= config.title %>",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "<%= suka_std_icon %>"
+        }
+    },
+    "keywords": "<%= suka_tags %>",
+    "description": "<%= suka_descr %>"
+}
+</script>
+<% } %>
