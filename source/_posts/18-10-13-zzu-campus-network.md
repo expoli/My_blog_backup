@@ -10,7 +10,7 @@ categories:
     - 使用指南
 ---
 
-![郑州大学网络管理中心](https://s1.ax1x.com/2018/10/13/iNWFjP.png)
+![郑州大学网络管理中心](https://ws3.sinaimg.cn/large/006tNbRwly1fwblq48q2jj318g0n5thk.jpg)
 
 ## 郑州大学校园网学生新用户使用指南
 

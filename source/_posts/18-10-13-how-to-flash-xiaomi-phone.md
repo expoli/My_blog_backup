@@ -9,7 +9,7 @@ categories:
     - 刷机
 ---
 
-![Fastboot.png](https://s1.ax1x.com/2018/10/13/iUpp11.png)
+![Fastboot.png](https://ws3.sinaimg.cn/large/006tNbRwly1fwblof1popj30hi09wdgi.jpg)
 
 ## 小米手机通用线刷教程
 
