@@ -1,13 +1,14 @@
-# 如何在Windows 安装 docker
+# 如何在 Windows 安装 docker
 
-![](https://ws3.sinaimg.cn/large/006tNbRwly1fwb5gw9aqij30v40ikq8x.jpg)
+![](https://ws4.sinaimg.cn/large/006tNbRwly1fwb6v06z2jj30kk0ae0xj.jpg)
+
+## 注意⚠️  因 docker 需要 Hyper-V 虚拟化支持、win10 家庭版无法安装
+<!-- more -->
 
 ## docker 介绍
 [Docker 官网](https://www.docker.com/)
 
 ## 安装前准备
-
-## 注意⚠️  因 docker 需要 Hyper-V 虚拟化支持、win10 家庭版无法安装
 
 * ### 下载 docker windows 安装包
     * [官方网站](https://store.docker.com/editions/community/docker-ce-desktop-windows)
