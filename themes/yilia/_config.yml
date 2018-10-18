@@ -68,7 +68,7 @@ top: true
 # Miscellaneous
 baidu_analytics: ''
 google_analytics: 'UA-126634641-2'
-#favicon: /favicon.png
+favicon: /img/favicon.png
 
 #你的头像url
 avatar: https://ws1.sinaimg.cn/large/006tNbRwly1fwc8suumjuj31hc0u07ct.jpg
@@ -133,7 +133,8 @@ friends:
   郑州大学双足实验室: https://shuangzu.top
   #郑州大学计算机协会: http://www.yangsx.club
   我的CSDN: https://blog.csdn.net/Tangcuyuha
-  Inc_志伟: https://blog.incentancy.com
+  Inc_志伟: https://blog.aspi.tech
+  Joger: https://zhengqiao.wang
 
 aboutme: 大家好、我是 zzutcy (糖醋鱼) <br> <br> 一只浪迹于生活中的一支死鱼 <br> <br> 对大家的访问表示热烈欢迎 <br> <br> 希望大家能在这里找到自己所需要的东西！
 
