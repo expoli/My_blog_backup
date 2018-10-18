@@ -25,6 +25,7 @@
     * 安装选项选择全部、docker 会自己安装需要的运行环境
     * 根据自己的需要进行安装选项的设置
     * 如果你不清楚具体选项的意义、你完全可以使用默认值、一路下一步就可
+
 ### 第二步
 * ### 配置优化
 * ### 更换软件源
@@ -36,7 +37,7 @@
     * 点击加速器
 * ![](https://ws3.sinaimg.cn/large/006tNbRwly1fwb5ci3h45j30nb0cd75h.jpg)
     * 找到相应操作系统平台的加速器配置
-* ![](https://ws2.sinaimg.cn/large/006tNbRwly1fwb5v997rwj30v50i7jtx.jpg)s
+* ![](https://ws2.sinaimg.cn/large/006tNbRwly1fwb5v997rwj30v50i7jtx.jpg)
     * **在** `win10` **托盘里右键** **docker** 
 * ![](https://ws2.sinaimg.cn/large/006tNbRwly1fwb519j9zjj30c50b9q3j.jpg)
     * **点击settings**
