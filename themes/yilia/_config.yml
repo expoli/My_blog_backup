@@ -7,9 +7,9 @@ menu:
 # SubNav
 subnav:
   github: "https://github.com/zzutcy"
-  weibo: "#"
-  rss: "#"
-  zhihu: "#"
+  weibo: "https://weibo.com/u/6021895921?is_all=1"
+  #rss: "/atom.xml"
+  #zhihu: "#"
   #qq: "#"
   #weixin: "#"
   #jianshu: "#"
@@ -46,11 +46,11 @@ fancybox: true
 
 # 打赏
 # 打赏type设定：0-关闭打赏； 1-文章对应的md文件里有reward:true属性，才有打赏； 2-所有文章均有打赏
-reward_type: 1
+reward_type: 2
 # 打赏wording
-reward_wording: '谢谢你请我吃糖果'
+reward_wording: '谢谢你请我吃糖醋鱼'
 # 支付宝二维码图片地址，跟你设置头像的方式一样。比如：/assets/img/alipay.jpg
-alipay: 
+alipay: https://ws1.sinaimg.cn/large/006tNbRwly1fwc8s1h1ctj30ch0cgwg1.jpg
 # 微信二维码图片地址
 weixin: 
 
@@ -68,10 +68,10 @@ top: true
 # Miscellaneous
 baidu_analytics: ''
 google_analytics: 'UA-126634641-2'
-favicon: /favicon.png
+#favicon: /favicon.png
 
 #你的头像url
-avatar: https://s1.ax1x.com/2018/10/12/iNPNW9.jpg
+avatar: https://ws1.sinaimg.cn/large/006tNbRwly1fwc8suumjuj31hc0u07ct.jpg
 
 #是否开启分享
 share_jia: true
@@ -131,10 +131,11 @@ local_search:
 
 friends:
   郑州大学双足实验室: https://shuangzu.top
-  郑州大学计算机协会: http://www.yangsx.club
-  Inc_志伟: http://incentancy.com
+  #郑州大学计算机协会: http://www.yangsx.club
+  我的CSDN: https://blog.csdn.net/Tangcuyuha
+  Inc_志伟: https://blog.incentancy.com
 
-aboutme: 糖醋鱼<br><br>一只浪迹于生活中的一支死鱼<br>恒高兴与大家相见 ^_^
+aboutme: 大家好、我是 zzutcy (糖醋鱼) <br> <br> 一只浪迹于生活中的一支死鱼 <br> <br> 对大家的访问表示热烈欢迎 <br> <br> 希望大家能在这里找到自己所需要的东西！
 
 
 

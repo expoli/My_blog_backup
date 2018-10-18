@@ -7,20 +7,20 @@
 # Site
 title: 糖醋鱼的博客
 subtitle: 浑浑噩噩、不务正业
-description: 郑州大学16级，现是双足实验室一员。擅闯网络维护技能。
-keywords: 糖醋鱼,代码,开源,IT网站。此为一纸博客。
+description: 郑州大学16级，现是郑州大学双足实验室一员、原是16届双足实验室体操组组长、现在篮球组学习ROS和继续不务正业。。。
+keywords: zzutcy,糖醋鱼,郑州大学,双足实验室，代码,开源,IT网站。此为一纸博客。
 author: Tang Cuyu
 language: zh-hans
 timezone: Asia/Shanghai
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://s.zzuzayu.top
+url: http://zzutcy.top
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 server:
-  port: 8080
+  port: 80
 
 # Directory
 source_dir: source
@@ -45,7 +45,7 @@ relative_link: false
 highlight:
   enable: true
   auto_detect: true
-  line_number: true
+  line_number: false
   tab_replace: ''
 
 # Category & Tag
@@ -99,7 +99,7 @@ search:
   path: search.xml
   field: post
   format: html
-  limit: 10000
+  limit: 1000
 
 
 # Deployment
@@ -111,6 +111,10 @@ feed:
     type: atom
     path: atom.xml
     limit: 100
+    hub: 
+    content: 
+    content_limit: 
+    content_limit_delim: ' '
 
 jsonContent:
   meta: false
