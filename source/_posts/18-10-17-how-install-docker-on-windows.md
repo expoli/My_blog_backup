@@ -1,4 +1,14 @@
-# 如何在 Windows 安装 docker
+---
+layout: post
+title:  如何在 Windows 安装 docker
+date: 2018-10-17 14:41:08
+comments: true
+tags:
+    - Windows
+    - docker
+categories:
+    - 笔记
+---
 
 ![](https://ws4.sinaimg.cn/large/006tNbRwly1fwb6v06z2jj30kk0ae0xj.jpg)
 
