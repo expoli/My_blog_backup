@@ -48,3 +48,9 @@ $ sudo nginx -s relaod
 
 ### OK！
 
+
+---
+### 文章作者:[糖醋鱼](http://zzutcy.top)
+
+### 版权声明:转载请注明来自[糖醋鱼的博客](http://zzutcy.top)
+---

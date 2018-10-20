@@ -114,3 +114,10 @@ sudo systemctl start watchdog.service
 **我 Asus FX50V 主板 采用的是 方案一 的ACPI 和 方案 二 进行解决的**
 
 **希望能够帮到你!**
+
+
+---
+### 文章作者:[糖醋鱼](http://zzutcy.top)
+
+### 版权声明:转载请注明来自[糖醋鱼的博客](http://zzutcy.top)
+---

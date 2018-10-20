@@ -53,3 +53,9 @@ HKEY_LOCAL_MACHINE/SYSTEM/CurrentControlSet/Control/TimeZoneInformation/
 
 添加一项类型为REG_DWORD的键值，命名为RealTimeIsUniversal，值为1然后重启后时间即回复正常
 
+
+---
+### 文章作者:[糖醋鱼](http://zzutcy.top)
+
+### 版权声明:转载请注明来自[糖醋鱼的博客](http://zzutcy.top)
+---

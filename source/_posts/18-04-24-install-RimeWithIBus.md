@@ -64,3 +64,10 @@ sudo apt-get install librime-data-zyenpheng
 ```
 
 ### [官方安装手记](https://github.com/rime/home/wiki/RimeWithIBus)
+
+
+---
+### 文章作者:[糖醋鱼](http://zzutcy.top)
+
+### 版权声明:转载请注明来自[糖醋鱼的博客](http://zzutcy.top)
+---

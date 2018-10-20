@@ -40,3 +40,9 @@ deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security main restricted
 
 [其它Ubuntu版本](https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/)
 
+
+---
+### 文章作者:[糖醋鱼](http://zzutcy.top)
+
+### 版权声明:转载请注明来自[糖醋鱼的博客](http://zzutcy.top)
+---
